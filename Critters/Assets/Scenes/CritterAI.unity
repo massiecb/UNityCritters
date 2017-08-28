@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 500709007}
   - component: {fileID: 500709006}
   - component: {fileID: 500709005}
+  - component: {fileID: 500709009}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -221,7 +222,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 389cfe4139578c84597fa6ee414db570, type: 2}
+  - {fileID: 2100000, guid: c44886856fe2f2f498bec38e0f40da0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -273,6 +274,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &500709009
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 500709004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1470940884
 GameObject:
   m_ObjectHideFlags: 0
