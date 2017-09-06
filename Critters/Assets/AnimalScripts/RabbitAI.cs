@@ -6,18 +6,33 @@ public class RabbitAI : MonoBehaviour {
     // Use this for initialization
     public bool canSeePredator = false;
     public float RADIUS = 0.5f;
-	void Start () {
 
-	}
+    private Animator ani;
+	void Start () {
+        ani = gameObject.GetComponent<Animator>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        AnimatorStateInfo state = ani.GetCurrentAnimatorStateInfo(0);
+        if (state.IsName("Idle"))
+            IdleHandler();
+        if (canSeePredator) {
+            Debug.Log("Can see ");
+        }
 		
 	}
 
+    private void IdleHandler () {
+
+    }
+
     private void OnTriggerEnter (Collider target) {
-        if (target.gameObject.tag == "Predator")
-            canSeePredator = true;
+        if (target.gameObject.tag != "Terrain") {
+            if (target.gameObject.tag == "Predator" && LOSClear(target.transform))
+                canSeePredator = true;
+        }
     }
 
     private void OnTriggerExit (Collider other) {
