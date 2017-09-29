@@ -7,7 +7,7 @@ public class RabbitAI : MonoBehaviour {
     public bool canSeePredator = false;
     public float RADIUS = 0.5f;
 	public float RUN_SPEED = 9f;
-	public float WALK_SPEED = 3f;
+	public float WALK_SPEED = 0.1f;
 	public float MAX_TURN = 90f;
 	public float WAIT_TIME = 3f;
 	public Vector3 groundNormal;
@@ -31,7 +31,15 @@ public class RabbitAI : MonoBehaviour {
 		if (state.IsName("Running")) {
 			SeePredatorHandler ();
         }
-		
+
+		if (state.IsName ("Eating")) {
+			EatingHandler ();
+		}
+	}
+
+	private void EatingHandler(){
+		physics.velocity = Vector3.zero;
+		Debug.Log ("is Eating");
 	}
 
 
@@ -42,8 +50,8 @@ public class RabbitAI : MonoBehaviour {
 			WAIT_TIME = WAIT_TIME + Time.time;
 			ani.SetBool ("CanSeeFood", true);
 		} else {
-			//Vector3 targetSpeed = FindClosestGrass () * WALK_SPEED;
-			//physics.velocity = Vector3.ProjectOnPlane (targetSpeed, groundNormal);
+			Vector3 targetSpeed = FindClosestGrass () * WALK_SPEED;
+			physics.velocity = Vector3.ProjectOnPlane (targetSpeed, groundNormal);
 		}
 
     }
@@ -60,6 +68,9 @@ public class RabbitAI : MonoBehaviour {
 			if (target.gameObject.tag == "Predator" && LOSClear (target.transform)) {
 				predator = target.transform;
 				ani.SetBool ("CanSeePredator", true);
+			}
+			if (target.gameObject.tag == "Grass" && LOSClear (target.transform)) {
+				ani.SetBool ("IsAtFood", true);
 			}
         }
     }

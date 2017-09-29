@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassLocation : MonoBehaviour {
+public class Grass : MonoBehaviour {
+
+	public int hp = 5;
+	public int energy = 0;
 
 	// Use this for initialization
-	public List<Vector3> grasses;
-	public GameObject grass;
 	void Start () {
-		grasses = new List<Vector3> ();
-		grasses.Add (grass.transform.position);
+		
 	}
 	
 	// Update is called once per frame
